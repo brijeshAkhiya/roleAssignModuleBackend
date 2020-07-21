@@ -17,7 +17,7 @@ controller.createRole = (req, res) => {
 
 controller.deleteRole = (req, res) => {
   Roles.deleteOne({ _id: req.body._id })
-    .then(() => res.send({message: 'Deleted'}))
+    .then(() => res.send({ message: 'Deleted' }))
     .catch(() => { res.send({ message: 'Something Went Wrong!!' }) })
 }
 controller.editRole = (req, res) => {
