@@ -34,10 +34,8 @@ controller.deleteRole = (req, res) => {
   Roles.deleteOne({ _id: req.params.id })
     .then((result) => {
       if (result.deletedCount) {
-        console.log(result)
         res.send({ message: 'Deleted', status: result.deletedCount })
       } else {
-        console.log(result)
         res.send({ message: 'Please try again!!', status: result.deletedCount })
       }
     })
@@ -72,9 +70,35 @@ controller.addpermissions = (req, res) => {
   //   })
 
   // This Code is for adding new permissions
-  permission.updateOne({ _id: '5f17e172ac0f046727804e17' }, { $push: { Admin: req.body.Admin, Content: req.body.Content } })
-    .then(result => res.send(result))
-    .catch(error => res.send(error))
+  if (req.body.saContent) {
+    permission.updateOne({ _id: '5f17e172ac0f046727804e17' }, { $push: { saContent: req.body.saContent } })
+      .then((result) => {
+        if (result.nModified) {
+          res.send({ message: 'Updated', status: result.nModified })
+        } else {
+          res.send({ message: 'Please try again!!', status: result.nModified })
+        }
+      })
+      .catch(error => {
+        console.log(error)
+        res.send({ error: 'Something Went Wrong!!' })
+      })
+  }
+
+  if (req.body.saAdmin) {
+    permission.updateOne({ _id: '5f17e172ac0f046727804e17' }, { $push: { saAdmin: req.body.saAdmin } })
+      .then((result) => {
+        if (result.nModified) {
+          res.send({ message: 'Updated', status: result.nModified })
+        } else {
+          res.send({ message: 'Please try again!!', status: result.nModified })
+        }
+      })
+      .catch(error => {
+        console.log(error)
+        res.send({ error: 'Something Went Wrong!!' })
+      })
+  }
 }
 
 controller.getpermissions = (req, res) => {
