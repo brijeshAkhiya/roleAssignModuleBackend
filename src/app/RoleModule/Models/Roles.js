@@ -5,7 +5,10 @@ const roles = new Schema({
     type: String,
     required: true
   },
-  sPermimssions: {
+  sParent: {
+    type: String
+  },
+  sPermissions: {
     type: [String],
     required: true
   }
