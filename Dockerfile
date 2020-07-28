@@ -1,7 +1,7 @@
 FROM node:latest
-RUN mkdir /src/app
-COPY package*.json /src/app
+RUN mkdir src
+COPY ./package*.json src/
 RUN npm i
-COPY . /src/app
+COPY . src/
 EXPOSE 8080
 CMD ["npm", "start"]
